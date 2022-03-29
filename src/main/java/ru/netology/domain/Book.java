@@ -17,4 +17,15 @@ public class Book extends Product {     //класс Book унаследован
         this.author = author;
     }
 
+    @Override
+    public boolean matches(String search) {
+        if (super.matches(search)) {        // вызов метода matches в версии описанной в Product
+            return true;
+        }
+        if (author.contains(search)) {
+            return true;
+        }
+        return false;
+    }
+    //return super.matches(search) || this.author.contains(text)        //то же самое в одну строку
 }

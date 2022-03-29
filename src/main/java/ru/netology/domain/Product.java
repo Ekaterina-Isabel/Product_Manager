@@ -35,4 +35,8 @@ public class Product {
     public void setPrice(int price) {
         this.price = price;
     }
+
+    public boolean matches(String search) {     //метод определения соответствия товара product запросу search
+        return this.name.contains(search);
+    }
 }
