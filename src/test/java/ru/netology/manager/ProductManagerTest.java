@@ -18,11 +18,11 @@ class ProductManagerTest {
     Product smartphone2 = new Smartphone(4, "smartphone2", 130, "producer2");
 
     @Test
-    void shouldAddProducts() {        //добавь продукты
+    void shouldAddProducts() {        //добавь продукты (через репозиторий и менеджер)
         repository.save(book1);
-        repository.save(book2);
+        manager.add(book2);
         repository.save(smartphone1);
-        repository.save(smartphone2);
+        manager.add(smartphone2);
 
         Product[] expected = {book1, book2, smartphone1, smartphone2 };
         Product[] actual = manager.findAll();
@@ -42,15 +42,28 @@ class ProductManagerTest {
     }
 
     @Test
-    void shouldRemoveById() {     //удали продукт по id
+    void shouldFindByIdNoId() {       //найди продукт по ID, нет id
+        repository.save(book1);
+        repository.save(book2);
+        repository.save(smartphone1);
+        repository.save(smartphone2);
+
+        Product expecte = null;
+        Product actual = manager.findById(5);
+        assertEquals(expecte, actual);
+    }
+
+    @Test
+    void shouldRemoveById() {     //удали продукт по id (через репозиторий и менеджер)
         repository.save(book1);
         repository.save(book2);
         repository.save(smartphone1);
         repository.save(smartphone2);
 
         repository.removeById(4);
+        manager.removeById(1);
 
-        Product[] expecte = {book1, book2, smartphone1};
+        Product[] expecte = {book2, smartphone1};
         Product[] actual = manager.findAll();
         assertArrayEquals(expecte, actual);
     }
@@ -64,6 +77,30 @@ class ProductManagerTest {
 
         Product[] expecte = {book1};
         Product[] actual = manager.searchByText("book1");
+        assertArrayEquals(expecte, actual);
+    }
+
+    @Test
+    void shouldSearchBookByNameNoProduct() {     //найди книгу по имени, нет такого товара
+        repository.save(book1);
+        repository.save(book2);
+        repository.save(smartphone1);
+        repository.save(smartphone2);
+
+        Product[] expecte = {};
+        Product[] actual = manager.searchByText("book3");
+        assertArrayEquals(expecte, actual);
+    }
+
+    @Test
+    void shouldSearchBookByNameSeveralProduct() {     //найди книгу по имени, несколько таких товаров
+        repository.save(book1);
+        repository.save(book2);
+        repository.save(smartphone1);
+        repository.save(smartphone2);
+
+        Product[] expecte = {book1, book2};
+        Product[] actual = manager.searchByText("book");
         assertArrayEquals(expecte, actual);
     }
 
@@ -102,5 +139,4 @@ class ProductManagerTest {
         Product[] actual = manager.searchByText("producer2");
         assertArrayEquals(expecte, actual);
     }
-
 }
