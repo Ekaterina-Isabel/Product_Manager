@@ -24,7 +24,7 @@ class ProductManagerTest {
         repository.save(smartphone1);
         manager.add(smartphone2);
 
-        Product[] expected = {book1, book2, smartphone1, smartphone2 };
+        Product[] expected = {book1, book2, smartphone1, smartphone2};
         Product[] actual = manager.findAll();
         assertArrayEquals(expected, actual);
     }
