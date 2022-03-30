@@ -23,7 +23,8 @@ public class Smartphone extends Product {       //класс Smartphone унас
             return true;
         }
         if (producer.contains(search)) {
-            return true;}
+            return true;
+        }
         return false;
     }
     //return super.matches(search) || producer.contains(search);        //то же самое в одну строку

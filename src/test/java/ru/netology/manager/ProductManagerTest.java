@@ -36,9 +36,9 @@ class ProductManagerTest {
         repository.save(smartphone1);
         repository.save(smartphone2);
 
-        Product expecte = smartphone2;
+        Product expected = smartphone2;
         Product actual = manager.findById(4);
-        assertEquals(expecte, actual);
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -48,9 +48,9 @@ class ProductManagerTest {
         repository.save(smartphone1);
         repository.save(smartphone2);
 
-        Product expecte = null;
+        Product expected = null;
         Product actual = manager.findById(5);
-        assertEquals(expecte, actual);
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -63,9 +63,9 @@ class ProductManagerTest {
         repository.removeById(4);
         manager.removeById(1);
 
-        Product[] expecte = {book2, smartphone1};
+        Product[] expected = {book2, smartphone1};
         Product[] actual = manager.findAll();
-        assertArrayEquals(expecte, actual);
+        assertArrayEquals(expected, actual);
     }
 
     @Test
@@ -75,9 +75,9 @@ class ProductManagerTest {
         repository.save(smartphone1);
         repository.save(smartphone2);
 
-        Product[] expecte = {book1};
+        Product[] expected = {book1};
         Product[] actual = manager.searchByText("book1");
-        assertArrayEquals(expecte, actual);
+        assertArrayEquals(expected, actual);
     }
 
     @Test
@@ -87,9 +87,9 @@ class ProductManagerTest {
         repository.save(smartphone1);
         repository.save(smartphone2);
 
-        Product[] expecte = {};
+        Product[] expected = {};
         Product[] actual = manager.searchByText("book3");
-        assertArrayEquals(expecte, actual);
+        assertArrayEquals(expected, actual);
     }
 
     @Test
@@ -99,9 +99,9 @@ class ProductManagerTest {
         repository.save(smartphone1);
         repository.save(smartphone2);
 
-        Product[] expecte = {book1, book2};
+        Product[] expected = {book1, book2};
         Product[] actual = manager.searchByText("book");
-        assertArrayEquals(expecte, actual);
+        assertArrayEquals(expected, actual);
     }
 
     @Test
@@ -111,9 +111,9 @@ class ProductManagerTest {
         repository.save(smartphone1);
         repository.save(smartphone2);
 
-        Product[] expecte = {book1};
+        Product[] expected = {book1};
         Product[] actual = manager.searchByText("author1");
-        assertArrayEquals(expecte, actual);
+        assertArrayEquals(expected, actual);
     }
 
     @Test
@@ -123,9 +123,9 @@ class ProductManagerTest {
         repository.save(smartphone1);
         repository.save(smartphone2);
 
-        Product[] expecte = {smartphone2};
+        Product[] expected = {smartphone2};
         Product[] actual = manager.searchByText("smartphone2");
-        assertArrayEquals(expecte, actual);
+        assertArrayEquals(expected, actual);
     }
 
     @Test
@@ -135,8 +135,8 @@ class ProductManagerTest {
         repository.save(smartphone1);
         repository.save(smartphone2);
 
-        Product[] expecte = {smartphone2};
+        Product[] expected = {smartphone2};
         Product[] actual = manager.searchByText("producer2");
-        assertArrayEquals(expecte, actual);
+        assertArrayEquals(expected, actual);
     }
 }
